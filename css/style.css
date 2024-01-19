@@ -144,3 +144,32 @@ tbody tr:nth-child(even) {
     background: #9baec8;
     cursor: pointer;
 }
+.HideForm{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(216, 216, 216, 0.443);
+    backdrop-filter: blur(3px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+
+}
+.SubHideForm{
+    background-color: #5364c9;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 40%;
+    height: 80%;
+    border-radius: 40px;
+    
+
+}
+.cancel{
+    width: 40px;
+    cursor: pointer;
+    margin: 20px;
+}

@@ -1,6 +1,16 @@
 <?php
  require_once ("./Model/Categorie.php");
+ require_once ("./Model/Produit.php");
  $categorie = new Categorie();
+ $Produit = new Produit();
+
+
+ $action = isset($_GET['action']) ? $_GET['action'] : '';
+ $id = isset($_GET['id']) ? $_GET['id'] : '';
+
+ if ($action =="supprimer" && !empty($id)){
+    $categorie->Deletecategorie($id,$Produit );
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +47,27 @@
     </main>
     <button class="addBtn"id="addCategories"> <h4>Ajouter une categorie</h4></button>
     </center>
+    <section class="HideForm">
+       <div class="SubHideForm">
+            <img src="./img/cancel.png" class="cancel" alt="">
+       </div>
+    </section>
    
     <script src="./js/script.js"></script>
 </body>
 </html>
+
+<script>
+    // ------------------------------SHOW/Hide FORM-----------------------------------------
+let HideForm = document.querySelector('.HideForm');
+let addBtn = document.querySelector('.addBtn');
+let cancel = document.querySelector('.cancel');
+
+addBtn.addEventListener('click',()=>{
+    HideForm.style.display = "inherit";
+})
+cancel.addEventListener('click',()=>{
+    HideForm.style.display = "none";
+})
+
+</script>

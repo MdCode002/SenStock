@@ -1,8 +1,13 @@
 <?php
- require_once ("./Model/Categorie.php");
  require_once ("./Model/Produit.php");
- $categorie = new Categorie();
  $Produit = new Produit();
+ $action = isset($_GET['action']) ? $_GET['action'] : '';
+ $id = isset($_GET['id']) ? $_GET['id'] : '';
+
+ if ($action =="supprimer" && !empty($id)){
+    $Produit->DeleteProduit($id);
+ }
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,14 +41,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                 <?php echo $Produit->print($Produit->readAll()) ?>                          </tbody>
+                 <?php echo $Produit->print($Produit->readAll()) ?> </tbody>
             </table>
         </section>
     </main>
-    <button class="addBtn"id="addCategories"> <h4>Ajouter une categorie</h4></button>
+    <button class="addBtn"id="addCategories"> <h4>Ajouter un produit</h4></button>
 
     </center>
+    <section class="HideForm">
+       <div class="SubHideForm">
+            <img src="./img/cancel.png" class="cancel" alt="">
+       </div>
+    </section>
    
     <script src="./js/script.js"></script>
 </body>
 </html>
+<script>
+    // ------------------------------SHOW/Hide FORM-----------------------------------------
+let HideForm = document.querySelector('.HideForm');
+let addBtn = document.querySelector('.addBtn');
+let cancel = document.querySelector('.cancel');
+
+addBtn.addEventListener('click',()=>{
+    HideForm.style.display = "inherit";
+})
+cancel.addEventListener('click',()=>{
+    HideForm.style.display = "none";
+})
+
+</script>

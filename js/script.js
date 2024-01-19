@@ -1,3 +1,4 @@
+// // ---------------------------COUNT--------------------------------
 let count = document.querySelector('.countnub');
 let hidecount = document.querySelector('.hidecountnub').innerHTML;
 
@@ -24,3 +25,9 @@ function updateCountP() {
 
 updateCount();
 updateCountP();
+// ---------------------------------------------------------------------------
+
+
+
+
+
