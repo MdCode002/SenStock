@@ -7,9 +7,20 @@
 
  $action = isset($_GET['action']) ? $_GET['action'] : '';
  $id = isset($_GET['id']) ? $_GET['id'] : '';
+if (isset($_POST['nom']) && $_POST['description']){
+    if (!empty($_POST['idcat'])){
+        $categorie->Update([$_POST['nom'], $_POST['description'], $_POST['idcat']]);
+
+    }else{
+        $categorie->save([$_POST['nom'], $_POST['description']]);
+    }
+}
 
  if ($action =="supprimer" && !empty($id)){
     $categorie->Deletecategorie($id,$Produit );
+ }
+ if ($action =="modifier" && !empty($id)){
+    $data = $categorie->readOne($id);
  }
 ?>
 <!DOCTYPE html>
@@ -50,13 +61,23 @@
     <section class="HideForm">
        <div class="SubHideForm">
             <img src="./img/cancel.png" class="cancel" alt="">
+            <div class="formSec">
+                <h2>Ajouter une Categorie</h2>
+                <form action="" method="POST">
+                    <label for="nom"><h4>Nom Categorie</h4></label>
+                    <input type="text" name="nom" id="" required value="<?php echo isset($data) ? $data["nom_categorie"] : ""; ?>">
+                    <label for="description"><h4>Description Categorie</h4></label>
+                    <input type="text" name="description" id="" required value="<?php echo isset($data) ? $data["description"] : ""; ?>">
+                    <input type="hidden" name="idcat" id="" required value="<?php echo isset($data) ? $data["idcategorie"] : ""; ?>">
+                    <input type="submit" name="" id="" value="Valider">
+                </form>
+            </div>
        </div>
     </section>
    
     <script src="./js/script.js"></script>
 </body>
 </html>
-
 <script>
     // ------------------------------SHOW/Hide FORM-----------------------------------------
 let HideForm = document.querySelector('.HideForm');
@@ -71,3 +92,9 @@ cancel.addEventListener('click',()=>{
 })
 
 </script>
+
+<?php 
+if(isset($data))
+echo "<script>  HideForm.style.display = 'inherit' </script>"
+
+?>

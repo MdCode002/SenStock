@@ -3,24 +3,40 @@ require_once "ModeleAbstrait.php";
 
 Class Categorie extends ModeleAbstrait {
   
-    // public function save($p = array()) {
-    //     if (!empty($p)) {
-    //         $nom = mysqli_real_escape_string($this->connection, $p["nom"]);
-    //         $prenom = mysqli_real_escape_string($this->connection, $p["prenom"]);
+    public function save($c = array()) {
+        if (!empty($c)) {
+            $nom = mysqli_real_escape_string($this->connection, $c[0]);
+            $description = mysqli_real_escape_string($this->connection, $c[1]);
 
-    //         $sql = "INSERT INTO usertb (prenom, nom) VALUES ('$nom', '$prenom')";
-            
-    //         if (mysqli_query($this->connection, $sql)) {
-    //             echo "Enregistrement réussi.";
-    //         } else {
-    //             echo "Erreur lors de l'enregistrement : " . mysqli_error($this->connection);
-    //         }
-    //     }
-    // }
+            $sql = "INSERT INTO categorie (nom_categorie,description) VALUES ('$nom', '$description')";
+            mysqli_query($this->connection, $sql);
+            header("Location: categories.php");
+
+           
+        }
+    }
+    public function Update($c = array()) {
+        if (!empty($c)) {
+            $nom = mysqli_real_escape_string($this->connection, $c[0]);
+            $description = mysqli_real_escape_string($this->connection, $c[1]);
+            $id = mysqli_real_escape_string($this->connection, $c[2]);
+
+            $sql = $sql = "UPDATE categorie SET nom_categorie = '$nom', description = '$description' WHERE idcategorie = '$id'";
+            ;
+            mysqli_query($this->connection, $sql);
+            header("Location: categories.php");
+           
+        }
+    }
 
     public function readAll(){
         $sql = "SELECT * FROM categorie";
         return mysqli_query($this->connection, $sql)->fetch_all();
+    }
+    public function readOne($id){
+        $id = mysqli_real_escape_string($this->connection, $id);
+        $sql = "SELECT * FROM categorie where idcategorie = '$id'";
+        return mysqli_query($this->connection, $sql)->fetch_assoc();
     }
     public function print($data){
         $result = "";
