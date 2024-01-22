@@ -87,14 +87,22 @@ let cancel = document.querySelector('.cancel');
 addBtn.addEventListener('click',()=>{
     HideForm.style.display = "inherit";
 })
-cancel.addEventListener('click',()=>{
+cancel.addEventListener('click', () => {
     HideForm.style.display = "none";
-})
+
+    let inputElements = document.querySelectorAll('input');
+
+    inputElements.forEach(element => {
+        if (element.type !== "submit") {
+            element.value = "";
+        }
+    });
+});
+
 
 </script>
 
 <?php 
 if(isset($data))
 echo "<script>  HideForm.style.display = 'inherit' </script>"
-
 ?>

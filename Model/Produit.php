@@ -32,6 +32,14 @@ Class Produit extends ModeleAbstrait {
        }
        return $result;
     }
+    public function printSelect($data){
+        $result = "";
+       foreach ($data as $key => $value) {
+        $result .= " <option value=" . $value[0] . ">" . $value[1] . "</option>";
+    
+       }
+       return $result;
+    }
 
     public function DeleteProduit($id){
         if($id >= 0 ){
@@ -39,6 +47,21 @@ Class Produit extends ModeleAbstrait {
             $sql = "DELETE FROM produits WHERE idproduit   = $Id";
             mysqli_query($this->connection, $sql);
             header( "Location:  ./Produits.php");
+        }
+    }
+    public function save($c = array()) {
+        if (!empty($c)) {
+            $nom = mysqli_real_escape_string($this->connection, $c[0]);
+            $Categorie = mysqli_real_escape_string($this->connection, $c[1]);
+            $Description = mysqli_real_escape_string($this->connection, $c[2]);
+            $Quantite  = mysqli_real_escape_string($this->connection, $c[3]);
+            $Prix   = mysqli_real_escape_string($this->connection, $c[4]);
+
+            $sql = "INSERT INTO `produits` (`nom_produit`, `categorie_id`, `qte`, `prix_unitaire`, `description`) VALUES (' $nom', '$Categorie ', '$Quantite ', '$Prix', '$Description ')";
+            mysqli_query($this->connection, $sql);
+            header("Location: produits.php");
+
+           
         }
     }
 

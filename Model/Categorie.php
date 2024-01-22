@@ -49,7 +49,7 @@ Class Categorie extends ModeleAbstrait {
                     <td>".$value[2]."</td> 
                     <td><a href='./Categories.php?action=modifier&id=".$value[0]."'>Modifier</a></td>
                     <td>
-                    <a href='./Categories.php?action=supprimer&id=".$value[0]."' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ".$value[1]." ? ".(!empty($produit) ? ' '.$this->count($produit).' produit(s) sont associé(s) à cette catégorie et seront aussi supprimés.' : '')."\");'> Supprimer </a>
+                    <a href='./Categories.php?action=supprimer&id=".$value[0]."' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ".$value[1]." ? ".(!empty($produit) ? ' '.count($produit).' produit(s) sont associé(s) à cette catégorie et seront aussi supprimés.' : '')."\");'> Supprimer </a>
                     </td>
                 </tr>";
 
@@ -74,7 +74,7 @@ Class Categorie extends ModeleAbstrait {
     
 
     public function GetProduitCategorie($id){
-        $sql = "SELECT * FROM produits WHERE categorie_id = $id";
+        $sql = "SELECT idproduit FROM produits WHERE categorie_id = $id";
         return mysqli_query($this->connection, $sql)->fetch_all();
     }
 

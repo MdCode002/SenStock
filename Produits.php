@@ -1,5 +1,7 @@
 <?php
  require_once ("./Model/Produit.php");
+ require_once ("./Model/Categorie.php");
+ $categorie = new Categorie();
  $Produit = new Produit();
  $action = isset($_GET['action']) ? $_GET['action'] : '';
  $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -8,6 +10,12 @@
     $Produit->DeleteProduit($id);
  }
  
+ if (isset($_POST['nom']) && $_POST['categorie'] && $_POST['description'] && $_POST['Quantite'] && $_POST['Prix']){
+ 
+        $Produit->save([$_POST['nom'], $_POST['categorie'] ,$_POST['description'],$_POST['Quantite'],$_POST['Prix']]);
+    
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +59,31 @@
     <section class="HideForm">
        <div class="SubHideForm">
             <img src="./img/cancel.png" class="cancel" alt="">
+            <div class="formSec">
+                <h2>Ajouter un Produit</h2>
+                <form action="" method="POST">
+                    <label for="nom"><h4>Nom Produit</h4></label>
+                    <input type="text" name="nom" id="" required value="<?php echo isset($data) ? $data["nom_categorie"] : ""; ?>">
+                    <label><h4>Categorie</h4></label>
+                    <select class="form-select" name="categorie" required>
+                        <?php  echo $Produit->printSelect($categorie->readAll()) ?>
+                    </select>
+
+                    <label for="description"><h4>Description Produit</h4></label>
+                    <input type="text" name="description" id="" required value="<?php echo isset($data) ? $data["description"] : ""; ?>">
+                    
+                    <label for="qte"><h4>Quantite Produit</h4></label>
+                    <input type="number" name="Quantite" id="" required value="<?php echo isset($data) ? $data["description"] : ""; ?>">
+                   
+                    <label for="prix"><h4>Prix Produit</h4></label>
+                    <input type="text" name="Prix" id="" required value="<?php echo isset($data) ? $data["description"] : ""; ?>">
+                   
+
+                    <input type="hidden" name="idPr" id="" required value="<?php echo isset($data) ? $data["idcategorie"] : ""; ?>">
+                    
+                    <input type="submit" name="" id="" value="Valider">
+                </form>
+            </div>
        </div>
     </section>
    
