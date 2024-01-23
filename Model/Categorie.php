@@ -47,9 +47,9 @@ Class Categorie extends ModeleAbstrait {
                 <tr>
                     <td>".$value[1]."</td>
                     <td>".$value[2]."</td> 
-                    <td><a href='./Categories.php?action=modifier&id=".$value[0]."'>Modifier</a></td>
+                    <td><a class='modifierbtn' href='./Categories.php?action=modifier&id=".$value[0]."'>Modifier</a></td>
                     <td>
-                    <a href='./Categories.php?action=supprimer&id=".$value[0]."' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ".$value[1]." ? ".(!empty($produit) ? ' '.count($produit).' produit(s) sont associé(s) à cette catégorie et seront aussi supprimés.' : '')."\");'> Supprimer </a>
+                    <a class='supprimerbtn' href='./Categories.php?action=supprimer&id=".$value[0]."' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ".$value[1]." ? ".(!empty($produit) ? ' '.count($produit).' produit(s) sont associé(s) à cette catégorie et seront aussi supprimés.' : '')."\");'> Supprimer </a>
                     </td>
                 </tr>";
 

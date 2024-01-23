@@ -207,3 +207,21 @@ input[type="submit"]{
 select{
     height: 30px;
 }
+.supprimerbtn{
+   padding: 5px;
+   color: white;
+   border-radius: 7px;
+    background: rgb(230, 27, 27);
+    box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+}
+.modifierbtn{
+    padding: 5px;
+    color: white;
+    border-radius: 7px;
+     background: rgb(6, 108, 204);
+     box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+ -webkit-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+ -moz-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+}

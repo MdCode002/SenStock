@@ -25,18 +25,22 @@ Class Produit extends ModeleAbstrait {
                     <td>" . $value[3] . "</td>
                     <td>" . $value[4] . "</td>
                     <td>" . $value[5] . "</td>
-                    <td><a href='./Produits.php?action=modifier&id=" . $value[0] . "'>Modifier</a></td>
-                    <td><a href='./Produits.php?action=supprimer&id=" . $value[0] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer " . $value[1] . " ?\");'>Supprimer</a></td>
+                    <td><a class='modifierbtn' href='./Produits.php?action=modifier&id=" . $value[0] . "'>Modifier</a></td>
+                    <td><a class='supprimerbtn' href='./Produits.php?action=supprimer&id=" . $value[0] . "' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer " . $value[1] . " ?\");'>Supprimer</a></td>
                 </tr>";
     
        }
        return $result;
     }
-    public function printSelect($data){
+
+    public function printSelect($data, $selectedValue){
         $result = "";
        foreach ($data as $key => $value) {
-        $result .= " <option value=" . $value[0] . ">" . $value[1] . "</option>";
-    
+        if ($selectedValue == $value[0]) {
+        $result .= " <option value=" . $value[0] . " selected >" . $value[1] . "</option>";
+        } else {
+            $result .= " <option value=" . $value[0] . ">" . $value[1] . "</option>"; 
+        }
        }
        return $result;
     }
@@ -64,5 +68,22 @@ Class Produit extends ModeleAbstrait {
            
         }
     }
+    public function Update($c = array()) {
+        if (!empty($c)) {
+            $nom = mysqli_real_escape_string($this->connection, $c[0]);
+            $Categorie = mysqli_real_escape_string($this->connection, $c[1]);
+            $Description = mysqli_real_escape_string($this->connection, $c[2]);
+            $Quantite  = mysqli_real_escape_string($this->connection, $c[3]);
+            $Prix   = mysqli_real_escape_string($this->connection, $c[4]);
+            $id   = mysqli_real_escape_string($this->connection, $c[5]);
+
+            $sql = $sql = "UPDATE produits SET nom_produit = '$nom', categorie_id = '$Categorie', qte = '$Quantite', description = '$Description', prix_unitaire = '$Prix' WHERE idproduit  = '$id'";
+            ;
+            mysqli_query($this->connection, $sql);
+            header("Location: produits.php");
+           
+        }
+    }
+    
 
 }

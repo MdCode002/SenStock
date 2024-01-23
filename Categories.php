@@ -62,7 +62,7 @@ if (isset($_POST['nom']) && $_POST['description']){
        <div class="SubHideForm">
             <img src="./img/cancel.png" class="cancel" alt="">
             <div class="formSec">
-                <h2>Ajouter une Categorie</h2>
+                <h2 class="TitleForm"><?php echo isset($data) ? "Modifier la Categorie":"Ajouter une Categorie"  ; ?></h2>
                 <form action="" method="POST">
                     <label for="nom"><h4>Nom Categorie</h4></label>
                     <input type="text" name="nom" id="" required value="<?php echo isset($data) ? $data["nom_categorie"] : ""; ?>">
@@ -83,9 +83,11 @@ if (isset($_POST['nom']) && $_POST['description']){
 let HideForm = document.querySelector('.HideForm');
 let addBtn = document.querySelector('.addBtn');
 let cancel = document.querySelector('.cancel');
+let TitleForm = document.querySelector('.TitleForm');
 
 addBtn.addEventListener('click',()=>{
     HideForm.style.display = "inherit";
+    TitleForm.innerHTML = "Ajouter une Categorie"
 })
 cancel.addEventListener('click', () => {
     HideForm.style.display = "none";
